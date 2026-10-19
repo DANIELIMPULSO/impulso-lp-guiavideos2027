@@ -109,16 +109,19 @@ if (finePointer && !calm) {
     shade.style.setProperty('--my', (e.clientY - r.top) + 'px');
   }, { passive: true });
 
-  // Capa do guia: inclina conforme o mouse e os números de "2027" esticam com a proximidade
-  const cover = document.querySelector('.cover');
-  if (cover) {
-    const digits = [...cover.querySelectorAll('.cover-year i')];
+  // Livro do guia: gira conforme o mouse e os números de "2027" esticam com a proximidade
+  const book = document.querySelector('.book');
+  if (book) {
+    const turn = book.querySelector('.book-3d');
+    const shadow = book.querySelector('.book-shadow');
+    const digits = [...book.querySelectorAll('.cover-year i')];
     hero.addEventListener('mousemove', e => {
-      const r = cover.getBoundingClientRect();
+      const r = book.getBoundingClientRect();
       const nx = (e.clientX - (r.left + r.width / 2)) / innerWidth;
       const ny = (e.clientY - (r.top + r.height / 2)) / innerHeight;
-      cover.style.setProperty('--ry', (nx * 22).toFixed(2) + 'deg');
-      cover.style.setProperty('--rx', (-ny * 14).toFixed(2) + 'deg');
+      turn.style.setProperty('--ry', (-26 + nx * 34).toFixed(2) + 'deg');
+      turn.style.setProperty('--rx', (6 - ny * 14).toFixed(2) + 'deg');
+      shadow.style.setProperty('--sx', (-14 + nx * 30).toFixed(1));
       digits.forEach(l => {
         const b = l.getBoundingClientRect();
         const d = Math.hypot(e.clientX - (b.left + b.width / 2), (e.clientY - (b.top + b.height / 2)) * 1.6);
@@ -126,7 +129,7 @@ if (finePointer && !calm) {
       });
     }, { passive: true });
     hero.addEventListener('mouseleave', () => {
-      cover.style.removeProperty('--ry'); cover.style.removeProperty('--rx');
+      turn.style.removeProperty('--ry'); turn.style.removeProperty('--rx'); shadow.style.removeProperty('--sx');
       digits.forEach(l => l.style.removeProperty('--k'));
     });
   }
