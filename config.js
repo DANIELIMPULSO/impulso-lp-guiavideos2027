@@ -15,7 +15,7 @@ window.LP = {
   // Campos personalizados do RD Station (opcional). O identificador começa com "cf_".
   // Vazio = porte e objetivo vão só como tags no lead (porte-..., objetivo-...).
   campoPorte: '',
-  campoObjetivo: '',
+  campoObjetivo: 'cf_objetivo_com_video_em_2027',
 
   // Link direto do PDF, usado no botão "Baixar agora" da página de agradecimento.
   pdf: 'guia-planejamento-audiovisual-2027.pdf',
