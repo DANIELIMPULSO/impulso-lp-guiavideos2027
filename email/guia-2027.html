@@ -12,16 +12,14 @@
   Antes de usar, trocar:
     LINK_DO_PDF  -> link do PDF (duas ocorrências)
     {{NOME}}     -> variável de nome do lead do RD Station (botão "Personalizar" do editor)
-    A imagem do livro: subir email/livro-email.jpg no Gerenciador de arquivos do RD e trocar o endereço da tag <img>.
+    A imagem do topo (livro + título): subir email/topo-email.jpg no RD e trocar a imagem no editor.
 -->
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
   body { margin: 0; padding: 0; background: #2d2d2d; }
   a { color: #fdb813; }
   @media (max-width: 620px) {
     .wrap { width: 100% !important; }
     .pad { padding-left: 24px !important; padding-right: 24px !important; }
-    .h1 { font-size: 34px !important; }
   }
 </style>
 </head>
@@ -41,25 +39,18 @@
           </td>
         </tr>
 
-        <!-- Livro -->
+        <!-- Topo: livro e título numa imagem só, para a fonte Anton aparecer igual em qualquer programa de e-mail -->
         <tr>
-          <td align="center" style="padding:26px 44px 6px;">
+          <td class="pad" style="padding:26px 44px 0;">
             <a href="LINK_DO_PDF" target="_blank" style="text-decoration:none;">
-              <img src="https://danielimpulso.github.io/impulso-lp-guiavideos2027/email/livro-email.jpg" width="234" alt="Guia Planejamento de conteúdo audiovisual 2027" style="display:block;width:234px;max-width:100%;height:auto;border:0;">
+              <img src="https://danielimpulso.github.io/impulso-lp-guiavideos2027/email/topo-email.jpg" width="512" alt="Seu guia chegou. Decida antes de ligar a câmera. Guia Planejamento de conteúdo audiovisual 2027." style="display:block;width:100%;max-width:512px;height:auto;border:0;color:#fdb813;font-family:Arial,Helvetica,sans-serif;font-size:22px;font-weight:bold;">
             </a>
-          </td>
-        </tr>
-
-        <!-- Título -->
-        <tr>
-          <td class="pad h1" style="padding:24px 44px 0;font-family:Anton,'Arial Narrow',Impact,Arial,sans-serif;font-size:40px;line-height:1.08;text-transform:uppercase;color:#f4f2ec;">
-            Seu guia chegou.<br><span style="color:#fdb813;">Decida antes de ligar a câmera.</span>
           </td>
         </tr>
 
         <!-- Texto -->
         <tr>
-          <td class="pad" style="padding:22px 44px 0;font-family:'Work Sans',Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;color:#d8d6cf;">
+          <td class="pad" style="padding:22px 44px 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;color:#d8d6cf;">
             <p style="margin:0 0 14px;">Olá, {{NOME}}!</p>
             <p style="margin:0;">Aqui está o guia <strong style="color:#f4f2ec;">Planejamento de conteúdo audiovisual 2027</strong>, da Impulso Filmes.</p>
           </td>
@@ -71,7 +62,7 @@
             <table role="presentation" cellpadding="0" cellspacing="0" border="0">
               <tr>
                 <td bgcolor="#fdb813" style="background:#fdb813;border-radius:2px;">
-                  <a href="LINK_DO_PDF" target="_blank" style="display:inline-block;padding:16px 28px;font-family:'Work Sans',Arial,Helvetica,sans-serif;font-size:16px;font-weight:600;color:#111111;text-decoration:none;">Baixar o guia em PDF &rarr;</a>
+                  <a href="LINK_DO_PDF" target="_blank" style="display:inline-block;padding:16px 28px;font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:600;color:#111111;text-decoration:none;">Baixar o guia em PDF &rarr;</a>
                 </td>
               </tr>
             </table>
@@ -92,14 +83,14 @@
 
         <!-- Próximo passo -->
         <tr>
-          <td class="pad" style="padding:24px 44px 0;font-family:'Work Sans',Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;color:#d8d6cf;">
+          <td class="pad" style="padding:24px 44px 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;color:#d8d6cf;">
             Se quiser discutir o plano da sua empresa, é só responder este e-mail ou chamar a gente no <a href="https://wa.me/553235124803" target="_blank" style="color:#fdb813;font-weight:600;">WhatsApp (32) 3512-4803</a>.
           </td>
         </tr>
 
         <!-- Assinatura -->
         <tr>
-          <td class="pad" style="padding:22px 44px 36px;font-family:'Work Sans',Arial,Helvetica,sans-serif;font-size:16px;line-height:1.5;color:#f4f2ec;">
+          <td class="pad" style="padding:22px 44px 36px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.5;color:#f4f2ec;">
             <strong>Equipe Impulso Filmes</strong>
           </td>
         </tr>
@@ -108,7 +99,7 @@
       <!-- Rodapé -->
       <table role="presentation" class="wrap" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;">
         <tr>
-          <td class="pad" style="padding:22px 44px 0;font-family:'Work Sans',Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;color:#a3a19a;">
+          <td class="pad" style="padding:22px 44px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;color:#a3a19a;">
             <a href="https://www.impulsofilmes.com.br" target="_blank" style="color:#a3a19a;">impulsofilmes.com.br</a> &middot;
             <a href="https://www.instagram.com/impulsofilmes" target="_blank" style="color:#a3a19a;">Instagram</a> &middot;
             <a href="https://br.linkedin.com/company/impulsofilmes" target="_blank" style="color:#a3a19a;">LinkedIn</a> &middot;
