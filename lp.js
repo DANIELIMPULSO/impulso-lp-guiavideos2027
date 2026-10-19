@@ -206,6 +206,24 @@ if (!calm) {
   onScroll();
 }
 
+// Celular e tablet (sem mouse): o livro folheia sozinho quando aparece na tela, fica aberto no sumário e fecha
+{
+  const livro = document.querySelector('.book');
+  if (livro && !finePointer && !calm && 'IntersectionObserver' in window) {
+    let ultima = -Infinity, t1, t2;
+    new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting || performance.now() - ultima < 9000) return;
+      ultima = performance.now();
+      clearTimeout(t1); clearTimeout(t2);
+      livro.classList.remove('fechando'); livro.classList.add('on');
+      t1 = setTimeout(() => {
+        livro.classList.remove('on'); livro.classList.add('fechando');
+        t2 = setTimeout(() => livro.classList.remove('fechando'), 1300);
+      }, 3200);
+    }), { threshold: .6 }).observe(livro);
+  }
+}
+
 // Interações com o mouse
 if (finePointer && !calm) {
   document.body.classList.add('has-cursor');

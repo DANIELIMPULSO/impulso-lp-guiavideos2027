@@ -237,6 +237,10 @@
 @media (max-width: 900px) {
   .hero-inner { grid-template-columns: 1fr; }
   .book { --w: min(250px, 62vw); justify-self: start; margin: 28px 0 40px 22px; }
+  /* aberto no celular: menor e mais para a direita, para as duas páginas caberem na largura */
+  .book.on { transform: translateX(calc(var(--w) * .38)) scale(.62); }
+  /* no celular o livro fica abaixo da dobra: o topo não esmaece ao rolar, senão o livro aparece apagado */
+  .hero-inner { opacity: 1; transform: none; }
   .problem, .socio { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }
   .budget-grid { grid-template-columns: 1fr; }
