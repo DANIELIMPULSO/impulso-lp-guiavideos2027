@@ -13,7 +13,7 @@ Página de captura do guia gratuito da Impulso Filmes, no visual do site novo (m
 ## Para ligar ao RD Station
 
 1. **Token público**: RD Station Marketing > Configurações da conta > Integrações > Tokens. Colar em `rdToken` no `config.js`. Sem token, a página fica em modo de teste (não envia nada e só leva ao agradecimento).
-2. **Campos personalizados**: criar dois campos de lista no RD Station e conferir os identificadores (`cf_...`) em `campoPorte` e `campoObjetivo`:
+2. **Campos personalizados (opcional)**: porte e objetivo sempre vão como tags no lead (`guia-2027`, `porte-31-a-60`, `objetivo-apoiar-vendas` etc.). Para tê-los também como campos, criar dois campos de lista no RD Station e colocar os identificadores (`cf_...`) em `campoPorte` e `campoObjetivo`:
    - Porte da empresa: 1 a 30, 31 a 60, 61 a 100, 101 a 200, 201 a 500, Mais de 500
    - Objetivo com vídeo em 2027: Fortalecer a marca, Apoiar vendas, Treinar e engajar equipes, Divulgar um lançamento, Ainda estou avaliando
 3. **Envio do PDF**: criar uma automação no RD Station com gatilho "converteu em `lp-guia-planejamento-audiovisual-2027`" que manda o e-mail com o PDF.

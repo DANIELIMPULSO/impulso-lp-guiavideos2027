@@ -347,12 +347,16 @@ if (form) {
       mobile_phone: '+55' + digitos,
       company_name: f.empresa.value.trim(),
       job_title: f.cargo.value.trim(),
-      [CFG.campoPorte || 'cf_porte_da_empresa']: f.porte.value,
-      [CFG.campoObjetivo || 'cf_objetivo_com_video_em_2027']: f.objetivo.value,
       available_for_mailing: true,
       // Registro do consentimento (LGPD) no lead
       legal_bases: [{ category: 'communications', type: 'consent', status: 'granted' }],
     };
+    // Porte e objetivo: vão para os campos personalizados quando eles existem no RD Station
+    // e sempre também como tags (ex.: porte-31-a-60, objetivo-apoiar-vendas), que dispensam configuração
+    const tag = t => t.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    if (CFG.campoPorte) payload[CFG.campoPorte] = f.porte.value;
+    if (CFG.campoObjetivo) payload[CFG.campoObjetivo] = f.objetivo.value;
+    payload.tags = ['guia-2027', 'porte-' + tag(f.porte.value), 'objetivo-' + tag(f.objetivo.value)];
     const origem = cookie('__trf.src');
     if (origem) payload.traffic_source = origem;
 

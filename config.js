@@ -2,7 +2,7 @@
 window.LP = {
   // RD Station Marketing > Configurações da conta > Integrações > Tokens > "Token Público".
   // Vazio = modo de teste: o formulário não envia nada e só leva à página de agradecimento.
-  rdToken: '',
+  rdToken: '07ddf930fcb3d6ec8f952ef44a4277f7',
 
   // Código de monitoramento do RD Station (Configurações > Integrações > Código de monitoramento):
   // só o endereço do script, ex.: 'https://d335luupugsy2.cloudfront.net/js/loader-scripts/xxxx-loader.js'.
@@ -12,10 +12,10 @@ window.LP = {
   // Nome da conversão que aparece no RD Station (use o mesmo na automação que envia o PDF por e-mail).
   conversao: 'lp-guia-planejamento-audiovisual-2027',
 
-  // Campos personalizados criados no RD Station (Configurações > Campos personalizados).
-  // O identificador começa com "cf_" e precisa ser igual ao cadastrado lá.
-  campoPorte: 'cf_porte_da_empresa',
-  campoObjetivo: 'cf_objetivo_com_video_em_2027',
+  // Campos personalizados do RD Station (opcional). O identificador começa com "cf_".
+  // Vazio = porte e objetivo vão só como tags no lead (porte-..., objetivo-...).
+  campoPorte: '',
+  campoObjetivo: '',
 
   // Link direto do PDF, usado no botão "Baixar agora" da página de agradecimento.
   pdf: 'guia-planejamento-audiovisual-2027.pdf',
