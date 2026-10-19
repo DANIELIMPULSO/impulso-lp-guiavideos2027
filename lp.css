@@ -172,7 +172,17 @@
 @media (min-width: 1101px) { .lp-foot { grid-template-columns: 1.2fr 1fr 1fr; } }
 
 /* ---------- Página de agradecimento ---------- */
-.thanks { min-height: 88svh; }
+.thanks { min-height: 88svh; align-items: center; }
+/* Agradecimento: tudo centralizado */
+.thanks .hero-inner { grid-template-columns: 1fr; justify-items: center; text-align: center; padding-top: 140px; }
+.thanks .hero-copy { max-width: 760px; display: grid; justify-items: center; }
+.thanks .lead { margin-inline: auto; }
+.thanks .actions { justify-content: center; }
+.thanks .timecode { left: 50%; transform: translateX(-50%); }
+.next .budget-grid { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 28px; }
+.next .statement { max-width: 720px; display: grid; justify-items: center; }
+.next .statement p { margin-inline: auto; text-wrap: balance; }
+.next .next-actions { justify-content: center; }
 .thanks h1 { font-size: clamp(44px, 6vw, 92px); }
 .next-actions { display: flex; flex-wrap: wrap; gap: 12px; align-self: center; }
 .next .budget-grid { align-items: center; }
