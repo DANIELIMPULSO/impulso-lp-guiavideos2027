@@ -56,7 +56,12 @@
   /* folhas que viram */
   .leaf { top: 3px; bottom: 3px; left: 2px; right: 3px; transform-style: preserve-3d; transform-origin: 0 50%; transform: translateZ(calc(var(--d) / 2 - 1px - var(--i) * .5px)) rotateY(var(--l, 0deg));
     transition: transform .55s cubic-bezier(.4, .1, .2, 1); transition-delay: calc((5 - var(--i)) * 40ms); z-index: 2; }
-  .leaf > span { inset: 0; background: repeating-linear-gradient(0deg, transparent 0 13px, rgba(0, 0, 0, .07) 13px 14px) 0 34px / 100% calc(100% - 60px) no-repeat, var(--paper); }
+  /* folhas com cara de página escrita: um título e linhas de texto (com o desfoque, viram texto corrido) */
+  .leaf > span { inset: 0; background:
+      linear-gradient(#b9b4a6, #b9b4a6) 20px 24px / 48% 7px no-repeat,
+      linear-gradient(#e2c27a, #e2c27a) 20px 38px / 18% 4px no-repeat,
+      repeating-linear-gradient(0deg, transparent 0 7px, #d3cfc3 7px 10px) 20px 56px / calc(100% - 40px) calc(100% - 92px) no-repeat,
+      var(--paper); }
   .leaf > span:first-child { box-shadow: inset 10px 0 14px -10px rgba(0, 0, 0, .35); }
   .leaf > span:last-child { transform: rotateY(180deg); box-shadow: inset -10px 0 14px -10px rgba(0, 0, 0, .35); }
   /* bordas do miolo, lombada, contracapa, sombra */
@@ -78,14 +83,20 @@
   /* ---------- Opção 2: a capa abre e as folhas passam rápido, como quem folheia ---------- */
   .o2 .stage:hover .b3d, .o2 .stage.on .b3d { --ry: -12deg; }
   .o2 .stage:hover .flap, .o2 .stage.on .flap { --o: -152deg; transition-duration: .5s; }
-  .o2 .stage:hover .leaf, .o2 .stage.on .leaf { --l: calc(-148deg + var(--i) * 1.2deg); transition-delay: calc(.25s + var(--i) * 90ms); }
+  .o2 .stage:hover .leaf, .o2 .stage.on .leaf { --l: calc(-148deg + var(--i) * 1.2deg); transition-duration: .45s; transition-delay: calc(.25s + var(--i) * 75ms); }
+  /* motion blur: cada folha desfoca enquanto vira, no mesmo tempo do giro */
+  .o2 .stage:hover .leaf > span, .o2 .stage.on .leaf > span { animation: borrao .45s calc(.25s + var(--i) * 75ms) both; }
+  .o2 .stage:hover .first, .o2 .stage.on .first { animation: borrao-fim .9s .25s both; }
+  @keyframes borrao { 0% { filter: blur(0); } 20% { filter: blur(3.5px); } 70% { filter: blur(2.5px); } 100% { filter: blur(0); } }
+  /* o sumário só fica nítido depois que a última folha passa */
+  @keyframes borrao-fim { 0%, 60% { filter: blur(2px); } 100% { filter: blur(0); } }
 
   /* ---------- Opção 3: a capa levanta um pouco e as folhas abrem em leque ---------- */
   .o3 .stage:hover .b3d, .o3 .stage.on .b3d { --ry: -20deg; --rx: 8deg; }
   .o3 .stage:hover .flap, .o3 .stage.on .flap { --o: -42deg; transition-duration: .6s; }
   .o3 .stage:hover .leaf, .o3 .stage.on .leaf { --l: calc(-34deg + var(--i) * 5deg); transition-duration: .7s; transition-delay: calc(var(--i) * 45ms); }
 
-  @media (prefers-reduced-motion: reduce) { .b3d, .flap, .leaf { transition-duration: .01ms !important; transition-delay: 0s !important; } }
+  @media (prefers-reduced-motion: reduce) { .b3d, .flap, .leaf { transition-duration: .01ms !important; transition-delay: 0s !important; } .leaf > span, .first { animation: none !important; } }
 </style>
 
 <div class="wrap">
