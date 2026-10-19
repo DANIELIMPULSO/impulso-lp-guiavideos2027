@@ -20,3 +20,7 @@ Página de captura do guia gratuito da Impulso Filmes, no visual do site novo (m
 4. **PDF**: colocar o arquivo nesta pasta como `guia-planejamento-audiovisual-2027.pdf` (ou trocar o link em `pdf`).
 
 Cada envio grava no lead: nome, e-mail, WhatsApp (+55), empresa, cargo, porte, objetivo e a base legal de consentimento (LGPD), que só é enviada com a caixa marcada (ela começa desmarcada e é obrigatória).
+
+## Ao publicar mudanças
+
+Os links de CSS, JS e da arte da capa levam `?v=MMDDHHMM`. Atualize esse número nos dois HTML sempre que mudar um desses arquivos, senão o navegador pode misturar o HTML novo com o CSS antigo guardado em cache.
