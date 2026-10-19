@@ -75,6 +75,32 @@
 .rule { position: relative; height: 1px; margin: clamp(72px, 11vw, 150px) var(--gutter) 0; background: var(--line); }
 .rule::after { content: ""; position: absolute; left: 0; top: -1px; width: 72px; height: 3px; background: var(--yellow); }
 
+/* ---------- Vídeo do sócio ---------- */
+.socio { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 40px 64px; align-items: center; }
+.socio-assina { display: grid; gap: 2px; padding-left: 14px; border-left: 2px solid var(--yellow); font-size: 15px !important; }
+.socio-assina b { color: var(--text); font-size: 17px; }
+.player { position: relative; aspect-ratio: 16 / 9; max-width: 100%; background: var(--surface); cursor: pointer; }
+.player-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .62; filter: saturate(.85); transition: opacity .4s, transform .8s cubic-bezier(.2, .7, .2, 1); }
+.player:hover .player-poster { opacity: .85; }
+.player .timecode { position: absolute; top: 16px; left: 18px; z-index: 1; }
+.player .play { z-index: 1; transition: transform .3s; }
+.player:hover .play { transform: scale(1.08); }
+.player-label { position: absolute; left: 18px; bottom: 16px; z-index: 1; font: 500 12.5px/1.3 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+/* cantos de visor em volta do player */
+.player::after { content: ""; position: absolute; inset: -12px; pointer-events: none; --c: var(--yellow); --l: 22px; --t: 1.5px;
+  background:
+    linear-gradient(var(--c), var(--c)) left top / var(--l) var(--t), linear-gradient(var(--c), var(--c)) left top / var(--t) var(--l),
+    linear-gradient(var(--c), var(--c)) right top / var(--l) var(--t), linear-gradient(var(--c), var(--c)) right top / var(--t) var(--l),
+    linear-gradient(var(--c), var(--c)) left bottom / var(--l) var(--t), linear-gradient(var(--c), var(--c)) left bottom / var(--t) var(--l),
+    linear-gradient(var(--c), var(--c)) right bottom / var(--l) var(--t), linear-gradient(var(--c), var(--c)) right bottom / var(--t) var(--l);
+  background-repeat: no-repeat; }
+.player iframe, .player video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; }
+.player.playing { cursor: auto; }
+.player.playing > :not(iframe):not(video) { display: none; }
+.player.soon { cursor: default; }
+.player.soon .play { background: none; border: 1.5px solid var(--yellow); }
+.player.soon .play::after { border-left-color: var(--yellow); }
+
 /* ---------- O que tem no guia: lista numerada ---------- */
 .steps { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 56px; counter-reset: passo; }
 .steps li { counter-increment: passo; display: grid; grid-template-columns: auto 1fr; gap: 4px 22px; padding: 26px 0 28px; border-top: 1px solid var(--line); }
@@ -144,7 +170,7 @@
 @media (max-width: 900px) {
   .hero-inner { grid-template-columns: 1fr; }
   .book { --w: min(250px, 62vw); justify-self: start; margin: 28px 0 40px 22px; }
-  .problem { grid-template-columns: 1fr; }
+  .problem, .socio { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }
   .budget-grid { grid-template-columns: 1fr; }
   .lp-foot { grid-template-columns: 1fr 1fr; }

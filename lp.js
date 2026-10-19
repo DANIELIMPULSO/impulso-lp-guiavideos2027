@@ -11,6 +11,45 @@ document.querySelectorAll('.politica').forEach(a => { if (CFG.politica) a.href =
 const pdf = document.getElementById('pdf');
 if (pdf && CFG.pdf) pdf.href = CFG.pdf;
 
+// Vídeo do sócio: nome, cargo e player que só carrega o vídeo no clique
+document.querySelectorAll('[data-socio-nome]').forEach(el => { if (CFG.socioNome && !/^Nome do/.test(CFG.socioNome)) el.textContent = CFG.socioNome; });
+document.querySelectorAll('b[data-socio-nome]').forEach(el => { if (CFG.socioNome) el.textContent = CFG.socioNome; });
+document.querySelectorAll('[data-socio-cargo]').forEach(el => { if (CFG.socioCargo) el.textContent = CFG.socioCargo; });
+const player = document.querySelector('.player');
+if (player) {
+  if (CFG.videoCapa) player.querySelector('.player-poster').src = CFG.videoCapa;
+  const url = CFG.video || '';
+  const vimeo = url.match(/vimeo\.com\/(?:video\/)?(\d+)(?:\/(\w+))?/);
+  const yt = url.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/);
+  const tocar = () => {
+    if (player.classList.contains('playing')) return;
+    let el;
+    if (vimeo) {
+      el = document.createElement('iframe');
+      el.src = 'https://player.vimeo.com/video/' + vimeo[1] + '?autoplay=1&title=0&byline=0&portrait=0' + (vimeo[2] ? '&h=' + vimeo[2] : '');
+    } else if (yt) {
+      el = document.createElement('iframe');
+      el.src = 'https://www.youtube-nocookie.com/embed/' + yt[1] + '?autoplay=1&rel=0';
+    } else {
+      el = document.createElement('video');
+      el.src = url; el.controls = true; el.autoplay = true; el.playsInline = true;
+    }
+    if (el.tagName === 'IFRAME') { el.allow = 'autoplay; fullscreen; picture-in-picture'; el.allowFullscreen = true; el.title = 'Vídeo sobre o guia'; }
+    player.append(el);
+    player.classList.add('playing');
+    player.removeAttribute('role'); player.removeAttribute('tabindex'); delete player.dataset.cursor;
+  };
+  if (url) {
+    player.addEventListener('click', tocar);
+    player.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tocar(); } });
+  } else {
+    player.classList.add('soon');
+    player.removeAttribute('role'); player.removeAttribute('tabindex'); delete player.dataset.cursor;
+    player.setAttribute('aria-label', 'Vídeo em breve');
+    player.querySelector('.player-label').textContent = 'Vídeo em breve';
+  }
+}
+
 // Anos de mercado sempre atualizados
 document.querySelectorAll('[data-anos]').forEach(el => { el.textContent = new Date().getFullYear() - 2013; });
 
