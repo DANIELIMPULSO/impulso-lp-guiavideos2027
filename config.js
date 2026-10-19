@@ -14,7 +14,7 @@ window.LP = {
 
   // Campos personalizados do RD Station (opcional). O identificador começa com "cf_".
   // Vazio = porte e objetivo vão só como tags no lead (porte-..., objetivo-...).
-  campoPorte: '',
+  campoPorte: 'cf_porte_da_empresa_atualizado_26',
   campoObjetivo: 'cf_objetivo_com_video_em_2027',
 
   // Link direto do PDF, usado no botão "Baixar agora" da página de agradecimento.
