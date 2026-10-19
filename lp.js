@@ -4,6 +4,13 @@ const UP = 'https://www.impulsofilmes.com.br/wp-content/uploads/';
 const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
 const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// Código de monitoramento do RD Station, quando configurado
+if (CFG.rdMonitoramento) {
+  const rd = document.createElement('script');
+  rd.src = CFG.rdMonitoramento; rd.async = true;
+  document.head.append(rd);
+}
+
 // Links que dependem da configuração (PDF, WhatsApp, orçamento, política)
 document.querySelectorAll('.zap-link').forEach(a => { if (CFG.whatsapp) a.href = CFG.whatsapp; });
 document.querySelectorAll('.orcamento-link').forEach(a => { if (CFG.orcamento) a.href = CFG.orcamento; });

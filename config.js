@@ -4,6 +4,11 @@ window.LP = {
   // Vazio = modo de teste: o formulário não envia nada e só leva à página de agradecimento.
   rdToken: '',
 
+  // Código de monitoramento do RD Station (Configurações > Integrações > Código de monitoramento):
+  // só o endereço do script, ex.: 'https://d335luupugsy2.cloudfront.net/js/loader-scripts/xxxx-loader.js'.
+  // Opcional: registra a origem do tráfego e as visitas do lead.
+  rdMonitoramento: '',
+
   // Nome da conversão que aparece no RD Station (use o mesmo na automação que envia o PDF por e-mail).
   conversao: 'lp-guia-planejamento-audiovisual-2027',
 
