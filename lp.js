@@ -243,7 +243,31 @@ if (finePointer && !calm) {
     const turn = book.querySelector('.book-3d');
     const shadow = book.querySelector('.book-shadow');
     const digits = [...book.querySelectorAll('.cover-year i')];
+    // Mouse em cima abre e folheia; mouse fora fecha (folhas voltam antes da capa)
+    // A área que mantém o livro aberto é fixa (o livro fechado mais a página da esquerda), para ele não
+    // fechar sozinho quando desliza e muda de tamanho debaixo do mouse.
+    let fechaTimer, zona = null;
+    const fechar = () => {
+      if (!book.classList.contains('on')) return;
+      zona = null;
+      book.classList.remove('on'); book.classList.add('fechando');
+      fechaTimer = setTimeout(() => book.classList.remove('fechando'), 1300);
+    };
+    book.addEventListener('mouseenter', () => {
+      if (book.classList.contains('on')) return;
+      const r = book.getBoundingClientRect();
+      zona = { l: r.left - r.width * .5, r: r.right + r.width * .35, t: r.top - 30, b: r.bottom + 40 };
+      clearTimeout(fechaTimer); book.classList.remove('fechando'); book.classList.add('on');
+      turn.style.removeProperty('--ry'); turn.style.removeProperty('--rx');
+    });
+    hero.addEventListener('mouseleave', fechar);
+    addEventListener('scroll', fechar, { passive: true });
     hero.addEventListener('mousemove', e => {
+      if (zona) {
+        if (e.clientX < zona.l || e.clientX > zona.r || e.clientY < zona.t || e.clientY > zona.b) fechar();
+        return;
+      }
+      if (book.classList.contains('on')) return;
       const r = book.getBoundingClientRect();
       const nx = (e.clientX - (r.left + r.width / 2)) / innerWidth;
       const ny = (e.clientY - (r.top + r.height / 2)) / innerHeight;
