@@ -55,6 +55,22 @@ if (player) {
   }
 }
 
+// Vídeo "Conheça a Impulso Filmes": toca dentro da página, só carrega no clique (mesmo vídeo da página Sobre do site)
+document.querySelectorAll('.reel[data-embed]').forEach(reel => {
+  const tocar = () => {
+    const f = document.createElement('iframe');
+    f.src = reel.dataset.embed;
+    f.allow = 'autoplay; fullscreen; picture-in-picture; encrypted-media';
+    f.allowFullscreen = true;
+    f.title = 'Conheça a Impulso Filmes';
+    reel.replaceChildren(f);
+    reel.classList.add('playing');
+    reel.removeAttribute('role'); reel.removeAttribute('tabindex'); delete reel.dataset.cursor;
+  };
+  reel.addEventListener('click', tocar, { once: true });
+  reel.addEventListener('keydown', e => { if (!reel.classList.contains('playing') && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); tocar(); } });
+});
+
 // Anos de mercado sempre atualizados
 document.querySelectorAll('[data-anos]').forEach(el => { el.textContent = new Date().getFullYear() - 2013; });
 
