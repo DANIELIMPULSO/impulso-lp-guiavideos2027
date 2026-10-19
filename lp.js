@@ -85,6 +85,74 @@ if (logos) {
   });
 }
 
+// Depoimentos em rodízio: dois por vez (um em telas estreitas), troca a cada 6 s.
+// Pausa com o mouse em cima, com foco no teclado ou fora da tela.
+const voices = document.querySelector('.voices');
+if (voices) {
+  const TEMPO = 6000;
+  const itens = [...voices.querySelectorAll('.quote')];
+  const bar = voices.querySelector('.voices-bar');
+  const count = voices.querySelector('.voices-count');
+  const porVez = () => matchMedia('(max-width: 900px)').matches ? 1 : 2;
+  const p2 = n => String(n).padStart(2, '0');
+  let inicio = 0, timer = null, restante = TEMPO, t0 = 0, pausado = false, visivel = false;
+
+  const mostrar = (anim = true) => {
+    const n = porVez();
+    const vis = Array.from({ length: n }, (_, k) => (inicio + k) % itens.length);
+    const aplicar = () => {
+      itens.forEach((q, i) => { q.hidden = !vis.includes(i); q.classList.toggle('out', anim && !calm); });
+      // mantém a ordem de leitura quando o par passa do fim para o começo da lista
+      vis.forEach(i => voices.querySelector('.voices-track').append(itens[i]));
+      requestAnimationFrame(() => requestAnimationFrame(() => itens.forEach(q => q.classList.remove('out'))));
+      count.textContent = vis.map(i => p2(i + 1)).join('–') + ' / ' + p2(itens.length);
+    };
+    if (anim && !calm) { itens.forEach(q => { if (!q.hidden) q.classList.add('out'); }); setTimeout(aplicar, 380); } else aplicar();
+  };
+  const reiniciarBarra = () => { bar.classList.remove('run'); void bar.offsetWidth; bar.style.setProperty('--t', TEMPO + 'ms'); bar.classList.add('run'); };
+  const agendar = ms => { clearTimeout(timer); t0 = performance.now(); restante = ms; timer = setTimeout(avancar, ms); };
+  function avancar(passo = porVez()) {
+    inicio = (inicio + passo + itens.length) % itens.length;
+    mostrar();
+    reiniciarBarra();
+    if (pausado || !visivel) { bar.classList.add('paused'); restante = TEMPO; clearTimeout(timer); } else agendar(TEMPO);
+  }
+  const pausar = () => {
+    if (pausado) return; pausado = true;
+    clearTimeout(timer); restante -= performance.now() - t0; bar.classList.add('paused');
+  };
+  const seguir = () => {
+    if (!visivel) return; pausado = false;
+    bar.classList.remove('paused'); agendar(Math.max(0, restante));
+  };
+
+  voices.querySelector('.voices-next').addEventListener('click', () => avancar());
+  voices.querySelector('.voices-prev').addEventListener('click', () => avancar(-porVez()));
+  const trilho = voices.querySelector('.voices-track');
+  trilho.addEventListener('mouseenter', pausar); trilho.addEventListener('mouseleave', seguir);
+  voices.addEventListener('focusin', e => { if (e.target.matches(':focus-visible')) pausar(); }); voices.addEventListener('focusout', seguir);
+
+  // Altura fixa pelo depoimento mais longo, para a página não pular a cada troca
+  const medir = () => {
+    const esc = itens.map(q => q.hidden);
+    itens.forEach(q => { q.hidden = false; q.style.minHeight = ''; });
+    const h = Math.max(...itens.map(q => q.offsetHeight));
+    itens.forEach((q, i) => { q.hidden = esc[i]; q.style.minHeight = h + 'px'; });
+  };
+  medir();
+  mostrar(false);
+  if (calm) { bar.hidden = true; }
+  else {
+    new IntersectionObserver(es => es.forEach(e => {
+      visivel = e.isIntersecting;
+      if (visivel && !bar.classList.contains('run')) { reiniciarBarra(); agendar(TEMPO); }
+      else if (visivel) seguir();
+      else { const p = pausado; pausar(); pausado = p; }
+    }), { threshold: .3 }).observe(voices);
+  }
+  addEventListener('resize', () => { medir(); mostrar(false); });
+}
+
 // Timecode do topo, a 24 quadros por segundo
 const tc = document.getElementById('tc');
 if (tc && !calm) {
