@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Arte de divulgação · Guia 2027</title>
+<!-- Gera as imagens de divulgação. Abrir com ?f=og (1200×630), ?f=quadrado (1080×1080) ou ?f=story (1080×1920) e capturar a tela no tamanho exato. -->
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../base.css">
+<link rel="stylesheet" href="../lp.css">
+<style>
+  html, body { margin: 0; overflow: hidden; }
+  .arte { position: relative; overflow: hidden; display: grid; background:
+      radial-gradient(60% 70% at 78% 50%, rgba(253, 184, 19, .13), transparent 70%),
+      radial-gradient(90% 90% at 10% 0%, #343434, var(--bg) 70%); }
+  /* granulação de película */
+  .arte::before { content: ""; position: absolute; inset: 0; opacity: .06; pointer-events: none; background: url("../capa-textura.svg") center / 140% no-repeat; mix-blend-mode: screen; }
+  .arte::after { content: ""; position: absolute; inset: 22px; pointer-events: none; --c: var(--yellow); --l: 34px; --t: 2px;
+    background:
+      linear-gradient(var(--c), var(--c)) left top / var(--l) var(--t), linear-gradient(var(--c), var(--c)) left top / var(--t) var(--l),
+      linear-gradient(var(--c), var(--c)) right top / var(--l) var(--t), linear-gradient(var(--c), var(--c)) right top / var(--t) var(--l),
+      linear-gradient(var(--c), var(--c)) left bottom / var(--l) var(--t), linear-gradient(var(--c), var(--c)) left bottom / var(--t) var(--l),
+      linear-gradient(var(--c), var(--c)) right bottom / var(--l) var(--t), linear-gradient(var(--c), var(--c)) right bottom / var(--t) var(--l);
+    background-repeat: no-repeat; }
+  .recline { position: absolute; top: 46px; left: 52px; display: flex; align-items: center; gap: 10px; font: 500 16px/1 var(--mono); letter-spacing: .08em; color: #d8d6cf; z-index: 2; }
+  .recline i { width: 11px; height: 11px; border-radius: 50%; background: #e5382b; }
+  .txt { position: relative; z-index: 2; display: grid; align-content: center; gap: 0; }
+  .txt .eyebrow { font-size: 18px; letter-spacing: .12em; }
+  .txt h1 { font: 400 66px/1.04 var(--display); text-transform: uppercase; margin: 18px 0 0; text-wrap: balance; }
+  .txt h1 em { display: block; font-style: normal; color: var(--yellow); }
+  .txt .sub { margin-top: 22px; color: #d8d6cf; font: 400 22px/1.45 var(--body); max-width: 30ch; }
+  .chip { display: inline-flex; align-items: center; gap: 14px; margin-top: 30px; justify-self: start; background: var(--yellow); color: #111; font: 600 22px/1 var(--body); padding: 18px 26px; border-radius: 2px; }
+  .url { margin-top: 18px; font: 500 16px/1.3 var(--mono); letter-spacing: .06em; color: var(--dim); }
+  .assina { position: absolute; z-index: 2; font: 500 16px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--text); }
+  .assina b { color: var(--yellow); font-weight: 500; }
+  .palco { position: relative; z-index: 2; display: grid; place-items: center; }
+  .palco .book { margin: 0; }
+  .palco .book::after { display: none; }
+
+  /* 1200×630: link no WhatsApp e no LinkedIn */
+  .og { width: 1200px; height: 630px; grid-template-columns: 1.25fr .9fr; padding: 0 60px 0 72px; }
+  .og .txt h1 { font-size: 58px; }
+  .og .txt .sub { font-size: 20px; }
+  .og .book { --w: 285px; --d: 34px; }
+  .og .assina { right: 64px; bottom: 50px; }
+  .og .chip { display: none; }
+
+  /* 1080×1080: post no feed do LinkedIn e do Instagram */
+  .quadrado { width: 1080px; height: 1080px; grid-template-columns: 1.15fr 1fr; padding: 0 56px 0 76px; }
+  .quadrado .txt h1 { font-size: 64px; }
+  .quadrado .book { --w: 360px; --d: 42px; }
+  .quadrado .url { font-size: 14px; white-space: nowrap; }
+  .quadrado .cover-year { font-size: 112px; }
+  .quadrado .cover-title { font-size: 30px; }
+  .quadrado .assina { left: 76px; bottom: 60px; }
+
+  /* 1080×1920: status do WhatsApp e stories */
+  .story { width: 1080px; height: 1920px; grid-template-rows: auto 1fr auto; padding: 200px 90px 190px; }
+  .story .txt { text-align: left; }
+  .story .txt h1 { font-size: 92px; }
+  .story .txt .eyebrow { font-size: 22px; }
+  .story .txt .sub { font-size: 30px; max-width: 32ch; }
+  .story .book { --w: 440px; --d: 52px; }
+  .story .cover { padding: 34px 30px 30px 40px; }
+  .story .cover-tag { font-size: 15px; }
+  .story .cover-year { font-size: 150px; }
+  .story .cover-title { font-size: 40px; }
+  .story .cover-foot { font-size: 13px; }
+  .story .chip { font-size: 30px; padding: 26px 36px; margin-top: 0; justify-self: center; }
+  .story .url { text-align: center; font-size: 22px; }
+  .story .recline { top: 90px; left: 90px; font-size: 22px; }
+  .story .assina { right: 90px; top: 92px; font-size: 20px; }
+  .story .fim { display: grid; gap: 0; position: relative; z-index: 2; }
+</style>
+</head>
+<body>
+<div class="arte" id="arte">
+  <p class="recline"><i></i>REC 00:20:27:00</p>
+  <div class="txt">
+    <p class="eyebrow">Guia gratuito · PDF</p>
+    <h1>Quais vídeos sua empresa vai produzir em 2027? <em>Decida antes de ligar a câmera.</em></h1>
+    <p class="sub">Planejamento de conteúdo audiovisual com calendário-modelo, checklist e método de testes.</p>
+    <span class="chip">Baixe grátis →</span>
+    <p class="url">impulsofilmes.com.br/guia-planejamento-audiovisual</p>
+  </div>
+  <div class="palco">
+    <span class="book">
+      <span class="book-3d">
+        <span class="cover">
+          <img class="cover-art" src="../capa-textura.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;opacity:.16">
+          <span class="cover-tag">Guia · Impulso Filmes</span>
+          <span class="cover-year"><i>2</i><i>0</i><i>2</i><i>7</i></span>
+          <span class="cover-title">Planejamento de conteúdo audiovisual</span>
+          <span class="cover-foot"><span>Calendário-modelo</span><span>Checklist</span><span>Testes</span></span>
+        </span>
+        <span class="book-pages"></span>
+        <span class="book-top"></span>
+        <span class="book-spine"><span>Planejamento audiovisual 2027</span></span>
+        <span class="book-back"></span>
+      </span>
+      <span class="book-shadow"></span>
+    </span>
+  </div>
+  <p class="assina"><b>●</b> Impulso Filmes</p>
+</div>
+<script>
+  const f = new URLSearchParams(location.search).get('f') || 'og';
+  const arte = document.getElementById('arte');
+  arte.classList.add(f);
+  if (f === 'story') {
+    // no story: texto em cima, livro no meio, botão e endereço embaixo
+    const fim = document.createElement('div');
+    fim.className = 'fim';
+    fim.append(arte.querySelector('.chip'), arte.querySelector('.url'));
+    arte.append(fim);
+  }
+  if (f === 'og') arte.querySelector('.txt').append(arte.querySelector('.url'));
+</script>
+</body>
+</html>
