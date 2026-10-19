@@ -24,3 +24,13 @@ Cada envio grava no lead: nome, e-mail, WhatsApp (+55), empresa, cargo, porte, o
 ## Ao publicar mudanças
 
 Os links de CSS, JS e da arte da capa levam `?v=MMDDHHMM`. Atualize esse número nos dois HTML sempre que mudar um desses arquivos, senão o navegador pode misturar o HTML novo com o CSS antigo guardado em cache.
+
+## Para o desenvolvedor: publicar em www.impulsofilmes.com.br/guia-planejamento-audiovisual/
+
+- A página é estática (HTML, CSS e JS, sem dependências nem build). Basta copiar a pasta inteira para o servidor, mantendo os arquivos juntos: os caminhos são relativos.
+- Endereço final já declarado no `index.html` (canonical, Open Graph e dados estruturados): `https://www.impulsofilmes.com.br/guia-planejamento-audiovisual/`.
+- Página de agradecimento: `obrigado.html`, na mesma pasta (o formulário redireciona para ela). Ela tem `noindex`. Se o WordPress usar outra URL, trocar `obrigado.html` em `lp.js` (duas ocorrências).
+- Se a página for montada dentro de um modelo do WordPress, evitar que o tema injete cabeçalho, rodapé ou CSS próprios: a página já tem os seus.
+- Fontes vêm do Google Fonts; imagens, vídeo de fundo e logos vêm de `www.impulsofilmes.com.br/wp-content/uploads/`.
+- Incluir o script de monitoramento do RD Station (opcional, mas recomendado): ele grava a origem do tráfego, que o formulário envia junto com a conversão.
+- Incluir a página no sitemap do site.

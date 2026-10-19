@@ -20,7 +20,7 @@ window.LP = {
   video: '',
   // Imagem de capa do player (opcional). Vazio = usa a imagem padrão.
   videoCapa: '',
-  socioNome: 'Nome do sócio',
+  socioNome: 'Kiko',
   socioCargo: 'Sócio-diretor · Impulso Filmes',
 
   whatsapp: 'https://wa.me/553235124803',
