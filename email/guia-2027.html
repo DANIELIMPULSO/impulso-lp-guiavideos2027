@@ -11,7 +11,7 @@
   E-mail de entrega do guia (RD Station Marketing, automação da conversão lp-guia-planejamento-audiovisual-2027).
   Antes de usar, trocar:
     LINK_DO_PDF  -> link do PDF (duas ocorrências)
-    {{NOME}}     -> variável de nome do lead do RD Station (botão "Personalizar" do editor)
+    Nome do lead: variável *|PRIMEIRO_NOME|* do RD Station (já aplicada).
     A imagem do topo (livro + título) já está hospedada no RD Station (email-editor-production.s3.amazonaws.com).
 -->
 <style>
@@ -51,7 +51,7 @@
         <!-- Texto -->
         <tr>
           <td class="pad" style="padding:22px 44px 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;color:#d8d6cf;">
-            <p style="margin:0 0 14px;">Olá, {{NOME}}!</p>
+            <p style="margin:0 0 14px;">Olá, *|PRIMEIRO_NOME|*!</p>
             <p style="margin:0;">Aqui está o guia <strong style="color:#f4f2ec;">Planejamento de conteúdo audiovisual 2027</strong>, da Impulso Filmes.</p>
           </td>
         </tr>
