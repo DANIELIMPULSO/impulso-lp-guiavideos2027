@@ -5,6 +5,11 @@
 
 /* ---------- Topo ---------- */
 .hero-copy { max-width: 660px; }
+/* Texto e livro em duas colunas equilibradas: o livro fica no centro da metade direita, alinhado ao meio do título */
+@media (min-width: 901px) {
+  .hero:not(.thanks) .hero-inner { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); align-items: center; gap: clamp(32px, 5vw, 80px); }
+  .hero:not(.thanks) .book { justify-self: center; --w: clamp(250px, 25vw, 350px); }
+}
 .hero h1 { font-size: clamp(38px, 4.6vw, 70px); }
 .hero h1 em, .thanks h1 em { display: block; font-style: normal; color: var(--yellow); }
 .hero h1 .eyebrow { display: block; margin-bottom: 18px; text-wrap: balance; }
