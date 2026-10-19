@@ -5,8 +5,8 @@ Página de captura do guia gratuito da Impulso Filmes, no visual do site novo (m
 | Arquivo | O que é |
 |---|---|
 | `index.html` | Landing page |
-| `obrigado.html` | Página de agradecimento (pós-envio) |
-| `config.js` | **Único arquivo a editar**: token do RD Station, campos, link do PDF, WhatsApp |
+| `obrigado.html` | Página de agradecimento (pós-envio, sem download: o PDF vai por e-mail) |
+| `config.js` | **Único arquivo a editar**: token do RD Station, campos, WhatsApp |
 | `base.css` | Cópia do `style.css` do mockup (identidade aprovada) |
 | `lp.css`, `lp.js` | Estilos e comportamento próprios da landing page |
 
@@ -17,7 +17,7 @@ Página de captura do guia gratuito da Impulso Filmes, no visual do site novo (m
    - Porte da empresa: 1 a 30, 31 a 60, 61 a 100, 101 a 200, 201 a 500, Mais de 500
    - Objetivo com vídeo em 2027: Fortalecer a marca, Apoiar vendas, Treinar e engajar equipes, Divulgar um lançamento, Ainda estou avaliando
 3. **Envio do PDF**: criar uma automação no RD Station com gatilho "converteu em `lp-guia-planejamento-audiovisual-2027`" que manda o e-mail com o PDF.
-4. **PDF**: colocar o arquivo nesta pasta como `guia-planejamento-audiovisual-2027.pdf` (ou trocar o link em `pdf`).
+4. **PDF**: o guia é entregue só pelo e-mail da automação do RD Station; a página de agradecimento não tem link para baixar.
 
 Cada envio grava no lead: nome, e-mail, WhatsApp (+55), empresa, cargo, porte, objetivo e a base legal de consentimento (LGPD), que só é enviada com a caixa marcada (ela começa desmarcada e é obrigatória).
 

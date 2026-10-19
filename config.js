@@ -17,9 +17,6 @@ window.LP = {
   campoPorte: 'cf_porte_da_empresa_atualizado_26',
   campoObjetivo: 'cf_objetivo_com_video_em_2027',
 
-  // Link direto do PDF, usado no botão "Baixar agora" da página de agradecimento.
-  pdf: 'guia-planejamento-audiovisual-2027.pdf',
-
   // Vídeo do sócio falando sobre o guia: link do Vimeo, do YouTube ou de um arquivo .mp4.
   // Vazio = mostra "vídeo em breve" no lugar do player.
   video: '',

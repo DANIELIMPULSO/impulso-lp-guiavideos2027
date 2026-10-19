@@ -11,12 +11,10 @@ if (CFG.rdMonitoramento) {
   document.head.append(rd);
 }
 
-// Links que dependem da configuração (PDF, WhatsApp, orçamento, política)
+// Links que dependem da configuração (WhatsApp, orçamento, política)
 document.querySelectorAll('.zap-link').forEach(a => { if (CFG.whatsapp) a.href = CFG.whatsapp; });
 document.querySelectorAll('.orcamento-link').forEach(a => { if (CFG.orcamento) a.href = CFG.orcamento; });
 document.querySelectorAll('.politica').forEach(a => { if (CFG.politica) a.href = CFG.politica; });
-const pdf = document.getElementById('pdf');
-if (pdf && CFG.pdf) pdf.href = CFG.pdf;
 
 // Vídeo do sócio: nome, cargo e player que só carrega o vídeo no clique
 document.querySelectorAll('[data-socio-nome]').forEach(el => { if (CFG.socioNome && !/^Nome do/.test(CFG.socioNome)) el.textContent = CFG.socioNome; });
