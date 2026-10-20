@@ -259,3 +259,8 @@
   .cover-year i { transform: none; }
   .statement.reveal .eyebrow { opacity: 1; }
 }
+
+/* Cursor com texto mais longo ("Receba o guia"): quebra em duas linhas centralizadas dentro da bolinha */
+@media (hover: hover) and (pointer: fine) {
+  .has-cursor .cursor.label { text-align: center; line-height: 1.3; padding: 0 12px; text-transform: uppercase; }
+}
