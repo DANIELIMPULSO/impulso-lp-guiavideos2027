@@ -117,6 +117,7 @@
 .socio { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 40px 64px; align-items: center; }
 .socio-assina { display: grid; gap: 2px; padding-left: 14px; border-left: 2px solid var(--yellow); font-size: 15px !important; }
 .socio-assina b { color: var(--text); font-size: 17px; }
+.socio .statement .socio-cta { margin-top: 28px; }
 .player { position: relative; aspect-ratio: 16 / 9; max-width: 100%; background: var(--surface); cursor: pointer; }
 .player-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; opacity: .78; filter: saturate(.85); transition: opacity .4s, transform .8s cubic-bezier(.2, .7, .2, 1); }
 .player:hover .player-poster { opacity: .85; }
