@@ -26,26 +26,29 @@ if (player) {
   const url = CFG.video || '';
   const vimeo = url.match(/vimeo\.com\/(?:video\/)?(\d+)(?:\/(\w+))?/);
   const yt = url.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/);
-  const tocar = () => {
+  const tocar = (auto = true) => {
     if (player.classList.contains('playing')) return;
     let el;
     if (vimeo) {
       el = document.createElement('iframe');
-      el.src = 'https://player.vimeo.com/video/' + vimeo[1] + '?autoplay=1&title=0&byline=0&portrait=0' + (vimeo[2] ? '&h=' + vimeo[2] : '');
+      el.src = 'https://player.vimeo.com/video/' + vimeo[1] + '?autoplay=' + (auto ? 1 : 0) + '&title=0&byline=0&portrait=0' + (vimeo[2] ? '&h=' + vimeo[2] : '');
     } else if (yt) {
       el = document.createElement('iframe');
-      el.src = 'https://www.youtube-nocookie.com/embed/' + yt[1] + '?autoplay=1&rel=0';
+      el.src = 'https://www.youtube-nocookie.com/embed/' + yt[1] + '?autoplay=' + (auto ? 1 : 0) + '&rel=0';
     } else {
       el = document.createElement('video');
       el.src = url; el.controls = true; el.autoplay = true; el.playsInline = true;
     }
-    if (el.tagName === 'IFRAME') { el.allow = 'autoplay; fullscreen; picture-in-picture'; el.allowFullscreen = true; el.title = 'Vídeo sobre o guia'; }
+    if (el.tagName === 'IFRAME') { el.allow = 'autoplay; fullscreen; picture-in-picture'; el.allowFullscreen = true; el.title = 'Vídeo sobre o guia'; el.loading = 'lazy'; }
     player.append(el);
     player.classList.add('playing');
     player.removeAttribute('role'); player.removeAttribute('tabindex'); delete player.dataset.cursor;
   };
-  if (url) {
-    player.addEventListener('click', tocar);
+  if (vimeo || yt) {
+    // Vimeo e YouTube: o player já aparece com a capa e o botão de play do próprio serviço
+    tocar(false);
+  } else if (url) {
+    player.addEventListener('click', () => tocar());
     player.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tocar(); } });
   } else {
     player.classList.add('soon');
