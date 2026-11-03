@@ -19,7 +19,7 @@ window.LP = {
 
   // Vídeo do sócio falando sobre o guia: link do Vimeo, do YouTube ou de um arquivo .mp4.
   // Vazio = mostra "vídeo em breve" no lugar do player.
-  video: '',
+  video: 'https://vimeo.com/1243038782/fed1bd3537',
   // Imagem de capa do player (opcional). Vazio = usa a imagem padrão.
   videoCapa: '',
   socioNome: 'Kiko Barbosa',
