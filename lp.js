@@ -44,8 +44,13 @@ if (player) {
     player.classList.add('playing');
     player.removeAttribute('role'); player.removeAttribute('tabindex'); delete player.dataset.cursor;
   };
-  if (url) {
-    // capa própria (video-kiko-capa.jpg); o vídeo só carrega e começa a tocar no clique
+  if ((vimeo || yt) && !matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    // Celular e tablet: o navegador não deixa um vídeo de outro site começar com som a partir de um toque
+    // fora dele (o Vimeo cai para tocar mudo). Por isso o player já aparece com a capa e o play do próprio
+    // Vimeo, e o toque da pessoa vai direto para ele, com som.
+    tocar(false);
+  } else if (url) {
+    // Computador: capa própria (video-kiko-capa.jpg); o vídeo só carrega e começa a tocar no clique
     player.addEventListener('click', () => tocar());
     player.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tocar(); } });
   } else {
